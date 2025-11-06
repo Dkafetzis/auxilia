@@ -45,7 +45,6 @@ isJqInstalled() {
 isHubInstalled() {
   which hub &> /dev/null
   if [  "${?}" != 0 ]; then
-    echo "The hub commandline tool is not installed. Using curl." >&2
     false
   fi
 }
@@ -78,6 +77,7 @@ apiCommand() {
 sanity_check() {
   isJqInstalled
   if ! isHubInstalled; then
+    echo "The hub commandline tool is not installed. Using curl." >&2
     isNetrcPresent
   fi
 }
